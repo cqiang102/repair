@@ -11,8 +11,8 @@
 
     <properties>
         <!-- Commons -->
-        <okhttp3.version>4.1.0</okhttp3.version>
         <commons.version>0.0.1-SNAPSHOT</commons.version>
+        <httpclient.version>4.5.5</httpclient.version>
         <spring-boot-mapper.version>2.1.5</spring-boot-mapper.version>
 
     </properties>
@@ -35,6 +35,16 @@
     <dependencyManagement>
         <dependencies>
 
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>fluent-hc</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
 
             <!-- DataSource -->
             <dependency>

@@ -1,6 +1,8 @@
 package online.cccccc.repair.commons.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -55,6 +57,7 @@ public class TRepair implements Serializable {
     private String repairDescription;
 
     @Column(name = "repair_date")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date repairDate;
 
     private static final long serialVersionUID = 1L;

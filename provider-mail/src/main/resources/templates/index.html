@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<span id="repairId" hidden th:text="${repairId}"></span>
+</body>
+<script>
+window.onload=function () {
+    var repairId = document.getElementById("repairId").innerText;
+    //创建一个xhr对象
+    var xhr = new XMLHttpRequest ( ) ;
+    //监听状态的改变
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState===4){//请求成功
+            if(xhr.status===200){//响应成功
+                //doResponse(xhr);
+                console.log(xhr.response);
+            }
+        }
+
+
+    };
+    //打开一个链接
+    xhr.open('get','http://localhost:81/repair/'+repairId,true);
+    //1.请求方式  2.发送到哪去  3.是否为异步请求 是true 否 flase
+    //发送数据
+    xhr.send(null);
+}
+</script>
+</html>

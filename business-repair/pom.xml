@@ -39,6 +39,14 @@
             <groupId>online.cccccc.repair</groupId>
             <artifactId>commons</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+        </dependency>
         <!-- DataSource -->
         <dependency>
             <groupId>com.zaxxer</groupId>

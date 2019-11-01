@@ -1,5 +1,6 @@
 package online.cccccc.repair.commons.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -40,6 +41,7 @@ public class TMail implements Serializable {
      * 创建时间
      */
     @Column(name = "mail_date")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date mailDate;
 
     private static final long serialVersionUID = 1L;
