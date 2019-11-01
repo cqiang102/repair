@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: provider-mail
+  jackson:
+    default-property-inclusion: non_null
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    timeout: 200
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+        max-active: 8
+  thymeleaf:
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    mode: HTML # 用非严格的 HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  mail:
+    host: smtp.qq.com
+    # 你的邮箱授权码
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    # 发送邮件的邮箱地址
+    username: 2375622526@qq.com
+
+server:
+  port: 82
+
