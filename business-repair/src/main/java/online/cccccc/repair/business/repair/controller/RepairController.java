@@ -3,6 +3,9 @@ package online.cccccc.repair.business.repair.controller;
 import online.cccccc.repair.business.repair.service.TRepairService;
 import online.cccccc.repair.commons.domain.TRepair;
 import online.cccccc.repair.commons.dto.Result;
+import online.cccccc.repair.commons.service.RedisService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +23,13 @@ import java.util.List;
  */
 @CrossOrigin("*")
 @RestController
-
 public class RepairController {
+    public static final Logger logger = LoggerFactory.getLogger(RepairController.class);
 
     @Resource
     private TRepairService tRepairService;
+    @Resource
+    private RedisService redisService;
 
     @PostMapping(value = "repair")
     public Result repair(@RequestBody TRepair tRepair){
@@ -37,7 +42,6 @@ public class RepairController {
     @GetMapping(value = "repair/{repairId}")
     public Result repair(@PathVariable String repairId){
         TRepair repair = tRepairService.getRepairbyId(repairId);
-        System.out.println(repair);
         return Result.makeResult(HttpStatus.OK.value(), "查询成功", repair);
     }
 
@@ -46,14 +50,19 @@ public class RepairController {
         List<TRepair> tRepairs = tRepairService.selectAll();
         return Result.makeResult(HttpStatus.OK.value(),"查询成功",tRepairs);
     }
-    @PostMapping("repair/schedule/{uuid}")
+    @GetMapping("repair/schedule/{uuid}")
     public Result updateSchedule(@PathVariable String uuid){
         // TODO 在 redis 中 通过 uuid 查询到单号
+        TRepair tRepair =(TRepair) redisService.get(uuid);
         // 拿到单号在更新进度
-        int updataById = tRepairService.updataById(uuid);
-        if (updataById>0){
-        return Result.makeResult(HttpStatus.OK.value(),"更新成功",null);
+        if (tRepair != null) {
+            int updataById = tRepairService.updataById(tRepair.getRepairId().toString());
+            if (updataById>0){
+                redisService.deleteKey(uuid);
+                return Result.makeResult(HttpStatus.OK.value(),"更新成功",null);
+            }
         }
+
         return Result.makeResult(HttpStatus.INTERNAL_SERVER_ERROR.value(),"更新失败",null);
     }
 }

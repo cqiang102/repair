@@ -9,29 +9,14 @@
     <title>Document</title>
 </head>
 <body>
-<span id="repairId" hidden th:text="${repairId}"></span>
+<h2>单号：<span   th:text="${repairId}"></span></h2>
+<h2>校区：<span   th:text="${repairRegion}"></span></h2>
+<h2>宿舍：<span   th:text="${repairDormitory}"></span></h2>
+<h2>联系方式<span   th:text="${repairContact}"></span></h2>
+<h2>原因：<span   th:text="${repairDescription}"></span></h2>
+<h2>提交时间：<span   th:text="${repairDate}"></span></h2>
+<a  th:href="@{http://{businessHost}/repair/schedule/{token}(token = ${token},businessHost = ${businessHost})}">我知道了</a>
+
 </body>
-<script>
-window.onload=function () {
-    var repairId = document.getElementById("repairId").innerText;
-    //创建一个xhr对象
-    var xhr = new XMLHttpRequest ( ) ;
-    //监听状态的改变
-    xhr.onreadystatechange=function(){
-        if(xhr.readyState===4){//请求成功
-            if(xhr.status===200){//响应成功
-                //doResponse(xhr);
-                console.log(xhr.response);
-            }
-        }
 
-
-    };
-    //打开一个链接
-    xhr.open('get','http://localhost:81/repair/'+repairId,true);
-    //1.请求方式  2.发送到哪去  3.是否为异步请求 是true 否 flase
-    //发送数据
-    xhr.send(null);
-}
-</script>
 </html>

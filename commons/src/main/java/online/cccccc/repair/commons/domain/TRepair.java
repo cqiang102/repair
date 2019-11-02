@@ -58,6 +58,7 @@ public class TRepair implements Serializable {
 
     @Column(name = "repair_date")
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date repairDate;
 
     private static final long serialVersionUID = 1L;

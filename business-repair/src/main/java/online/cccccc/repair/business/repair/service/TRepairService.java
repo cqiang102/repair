@@ -23,6 +23,10 @@ public interface TRepairService{
      */
     TRepair getRepairbyId(String id);
 
+    /**
+     * 查询所有报修单
+     * @return
+     */
     List<TRepair> selectAll();
 
     /**

@@ -18,11 +18,11 @@ import java.util.UUID;
  * @author 你是电脑
  * @create 2019/11/1 - 20:49
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = ProviderMailApplication.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = ProviderMailApplication.class)
 public class MailTest {
 
-    @Test
+//    @Test
     public void testJson(){
         List<EmailDTO> emailDTOS = new LinkedList<>();
         for (int i = 0; i < 4; i++) {

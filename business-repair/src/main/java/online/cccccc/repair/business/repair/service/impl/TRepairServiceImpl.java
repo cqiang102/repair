@@ -1,6 +1,8 @@
 package online.cccccc.repair.business.repair.service.impl;
 
+import online.cccccc.repair.business.repair.mapper.TRepairMapper;
 import online.cccccc.repair.business.repair.service.TMailService;
+import online.cccccc.repair.business.repair.service.TRepairService;
 import online.cccccc.repair.business.repair.utils.HttpClientUtils;
 import online.cccccc.repair.commons.domain.TMail;
 import online.cccccc.repair.commons.domain.TRepair;
@@ -10,18 +12,14 @@ import online.cccccc.repair.commons.utils.MapperUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import online.cccccc.repair.business.repair.mapper.TRepairMapper;
-import online.cccccc.repair.business.repair.service.TRepairService;
 
+import javax.annotation.Resource;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -41,6 +39,9 @@ public class TRepairServiceImpl implements TRepairService{
 
     @Resource
     private HttpClientUtils httpClientUtils;
+
+    @Value("${provider.host}")
+    private String providerHost;
 
     @Override
 
@@ -102,10 +103,9 @@ public class TRepairServiceImpl implements TRepairService{
     protected void sendEmail(List<EmailDTO> emailDtos){
         //TODO HTTP 方式请求提供者,发送邮件
         try {
-            CloseableHttpResponse post = httpClientUtils.post("http://localhost:82/email", MapperUtils.obj2json(emailDtos));
+            CloseableHttpResponse post = httpClientUtils.post("http://"+providerHost+"/email", MapperUtils.obj2json(emailDtos));
             HttpEntity entity = post.getEntity();
             String string = EntityUtils.toString(entity);
-            System.out.println(string);
         } catch (Exception e) {
             e.printStackTrace();
         }

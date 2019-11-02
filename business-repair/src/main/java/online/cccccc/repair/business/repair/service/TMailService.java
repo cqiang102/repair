@@ -29,6 +29,11 @@ public interface TMailService {
      */
     int delete(String mail);
 
+    /**
+     * 根据邮箱查收件人
+     * @param mail
+     * @return
+     */
     TMail selectOneByMail(String mail);
 
 

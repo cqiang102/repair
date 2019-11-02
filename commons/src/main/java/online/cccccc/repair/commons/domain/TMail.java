@@ -2,6 +2,7 @@ package online.cccccc.repair.commons.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -42,6 +43,7 @@ public class TMail implements Serializable {
      */
     @Column(name = "mail_date")
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date mailDate;
 
     private static final long serialVersionUID = 1L;

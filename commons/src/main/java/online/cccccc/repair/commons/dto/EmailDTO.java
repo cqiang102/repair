@@ -2,7 +2,6 @@ package online.cccccc.repair.commons.dto;
 
 import lombok.Data;
 import online.cccccc.repair.commons.domain.TMail;
-import online.cccccc.repair.commons.domain.TRepair;
 
 /**
  * @author 你是电脑

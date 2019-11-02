@@ -21,20 +21,10 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
-  mail:
-    host: smtp.qq.com
-    # 你的邮箱授权码
-    password:
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
-    # 发送邮件的邮箱地址
-    username: 2375622526@qq.com
+
 
 server:
   port: 82
+business:
+  host: localhost:81
 
