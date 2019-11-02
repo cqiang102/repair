@@ -1,6 +1,19 @@
 spring:
   application:
     name: provider-mail
+  mail:
+    host: smtp.qq.com
+    # 你的邮箱授权码
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    # 发送邮件的邮箱地址
+    username: 2375622526@qq.com
   jackson:
     default-property-inclusion: non_null
   redis:
