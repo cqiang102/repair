@@ -13,13 +13,13 @@
 ##### 请求方式： POST
 ##### URL：  /repair
 
-###### repairRegion 校区 (0 - 老校区 1-新校区)
-
-###### repairDormitory 宿舍
-
-###### repairContact 联系方式（ QQ || 微信 || 电话号码）
-
-###### repairDescription 问题简单描述
+> repairRegion: 校区 (0 - 老校区 1-新校区)
+>
+> repairDormitory: 宿舍
+>
+> repairContact: 联系方式（ QQ || 微信 || 电话号码）
+>
+> repairDescription: 问题简单描述
 ##### 请求参数示例
 ```json
 {
