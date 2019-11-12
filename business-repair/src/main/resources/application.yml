@@ -36,3 +36,5 @@ provider:
   host: localhost:82
 
 
+logging:
+  path: logs/

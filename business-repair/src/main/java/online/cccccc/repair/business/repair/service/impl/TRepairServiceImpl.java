@@ -1,6 +1,7 @@
 package online.cccccc.repair.business.repair.service.impl;
 
 import online.cccccc.repair.business.repair.mapper.TRepairMapper;
+import online.cccccc.repair.business.repair.service.FeignService;
 import online.cccccc.repair.business.repair.service.TMailService;
 import online.cccccc.repair.business.repair.service.TRepairService;
 import online.cccccc.repair.business.repair.utils.HttpClientUtils;
@@ -39,6 +40,9 @@ public class TRepairServiceImpl implements TRepairService{
 
     @Resource
     private HttpClientUtils httpClientUtils;
+
+    @Resource
+    private FeignService feignService;
 
     @Value("${provider.host}")
     private String providerHost;
@@ -101,13 +105,16 @@ public class TRepairServiceImpl implements TRepairService{
     }
     @Async
     protected void sendEmail(List<EmailDTO> emailDtos){
+
         //TODO HTTP 方式请求提供者,发送邮件
-        try {
-            CloseableHttpResponse post = httpClientUtils.post("http://"+providerHost+"/email", MapperUtils.obj2json(emailDtos));
-            HttpEntity entity = post.getEntity();
-            String string = EntityUtils.toString(entity);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            CloseableHttpResponse post = httpClientUtils.post("http://"+providerHost+"/email", MapperUtils.obj2json(emailDtos));
+//            HttpEntity entity = post.getEntity();
+//            String string = EntityUtils.toString(entity);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        feignService.sendEmail(emailDtos);
+
     }
 }

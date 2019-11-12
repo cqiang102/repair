@@ -40,4 +40,5 @@ server:
   port: 82
 business:
   host: localhost:81
-
+logging:
+  path: logs/

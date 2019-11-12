@@ -10,7 +10,6 @@ import java.io.Serializable;
  * @create 2019/11/1 - 15:41
  */
 @Data
-@AllArgsConstructor
 public class Result implements Serializable {
     /**
      * 状态码
@@ -26,7 +25,12 @@ public class Result implements Serializable {
     private Object data;
 
     public static Result makeResult(int status,String message,Object data){
-        return new Result(status,message,data);
+        Result result = new Result();
+        result.setStatus(status);
+        result.setMessage(message);
+        result.setData(data);
+
+        return result;
     }
 
 }

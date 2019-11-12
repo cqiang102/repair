@@ -35,4 +35,5 @@ public class EmailController {
         emailService.receive(emailDtos);
         return Result.makeResult(HttpStatus.OK.value(),"ok",null);
     }
+
 }
