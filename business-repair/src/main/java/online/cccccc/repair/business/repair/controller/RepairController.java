@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * @author 你是电脑
- * @create 2019/11/1 - 15:30
+ * @date 2019/11/1 - 15:30
  */
 @CrossOrigin("*")
 @RestController
@@ -56,7 +56,7 @@ public class RepairController {
         TRepair tRepair =(TRepair) redisService.get(uuid);
         // 拿到单号在更新进度
         if (tRepair != null) {
-            int updataById = tRepairService.updataById(tRepair.getRepairId().toString());
+            int updataById = tRepairService.updateById(tRepair.getRepairId().toString());
             if (updataById>0){
                 redisService.deleteKey(uuid);
                 return Result.makeResult(HttpStatus.OK.value(),"更新成功",null);

@@ -1,5 +1,6 @@
 package online.cccccc.repair.business.repair.controller;
 
+import online.cccccc.repair.business.repair.service.FeignService;
 import online.cccccc.repair.business.repair.service.TMailService;
 import online.cccccc.repair.commons.domain.TMail;
 import online.cccccc.repair.commons.dto.Result;
@@ -19,7 +20,7 @@ import java.util.List;
 
 /**
  * @author 你是电脑
- * @create 2019/11/1 - 16:31
+ * @date 2019/11/1 - 16:31
  */
 @RestController
 @CrossOrigin("*")
@@ -27,9 +28,12 @@ public class MailController {
     public static final Logger logger = LoggerFactory.getLogger(MailController.class);
     @Resource
     private TMailService tMailService;
+    @Resource
+    private FeignService feignService;
     @GetMapping("mails")
     public Result mails(){
         List<TMail> tMails = tMailService.selectAll();
+        feignService.test("test");
         return Result.makeResult(HttpStatus.OK.value(),"查询成功",tMails);
     }
     @DeleteMapping("mail/{mail}")

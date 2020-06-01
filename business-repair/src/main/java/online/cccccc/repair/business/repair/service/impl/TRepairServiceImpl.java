@@ -9,10 +9,6 @@ import online.cccccc.repair.commons.domain.TMail;
 import online.cccccc.repair.commons.domain.TRepair;
 import online.cccccc.repair.commons.dto.EmailDTO;
 import online.cccccc.repair.commons.service.RedisService;
-import online.cccccc.repair.commons.utils.MapperUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,9 +20,9 @@ import java.util.List;
 import java.util.UUID;
 
 /**
-@create 2019/10/30 - 16:20
-@author    你是电脑
-*/
+ * @date 2019/10/30 - 16:20
+ * @author    你是电脑
+ */
 @Service
 public class TRepairServiceImpl implements TRepairService{
 
@@ -38,8 +34,7 @@ public class TRepairServiceImpl implements TRepairService{
     @Resource
     private RedisService redisService;
 
-    @Resource
-    private HttpClientUtils httpClientUtils;
+    private final HttpClientUtils httpClientUtils =HttpClientUtils.getInstance();
 
     @Resource
     private FeignService feignService;
@@ -94,7 +89,7 @@ public class TRepairServiceImpl implements TRepairService{
     }
 
     @Override
-    public int updataById(String id) {
+    public int updateById(String id) {
         TRepair repair = tRepairMapper.selectByPrimaryKey(id);
         if(repair == null){
             return 0;

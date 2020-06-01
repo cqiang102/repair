@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.cccccc.repair.business.repair.mapper.TRepairMapper">
+  <resultMap id="BaseResultMap" type="online.cccccc.repair.commons.domain.TRepair">
+    <!--@mbg.generated generated on Wed Oct 30 16:20:28 CST 2019.-->
+    <!--@Table t_repair-->
+    <id column="repair_id" jdbcType="INTEGER" property="repairId" />
+    <result column="repair_region" jdbcType="TINYINT" property="repairRegion" />
+    <result column="repair_dormitory" jdbcType="VARCHAR" property="repairDormitory" />
+    <result column="repair_contact" jdbcType="VARCHAR" property="repairContact" />
+    <result column="repair_number" jdbcType="INTEGER" property="repairNumber" />
+    <result column="repair_description" jdbcType="LONGVARCHAR" property="repairDescription" />
+    <result column="repair_date" jdbcType="TIMESTAMP" property="repairDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Wed Oct 30 16:20:28 CST 2019.-->
+    repair_id, repair_region, repair_dormitory, repair_contact, repair_number, repair_description,
+    repair_date
+  </sql>
+</mapper>

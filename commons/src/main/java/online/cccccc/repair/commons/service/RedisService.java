@@ -2,7 +2,7 @@ package online.cccccc.repair.commons.service;
 
 /**
  * @author 你是电脑
- * @create 2019/8/23 - 18:25
+ * @date 2019/8/23 - 18:25
  */
 public interface RedisService {
     /**

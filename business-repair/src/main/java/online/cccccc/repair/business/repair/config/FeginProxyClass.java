@@ -1,41 +1,45 @@
 package online.cccccc.repair.business.repair.config;
 
+import online.cccccc.repair.business.repair.annotation.CqFeginService;
 import online.cccccc.repair.business.repair.utils.HttpClientUtils;
 import online.cccccc.repair.commons.dto.Result;
 import online.cccccc.repair.commons.utils.MapperUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.annotation.Resource;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.Map;
 
 /**
  * @author 你是电脑
- * @create 2019/11/12 - 15:37
+ * @date 2019/11/12 - 15:37
  */
-public class FeginProxyClass implements MethodInterceptor {
+public class FeginProxyClass<T> implements MethodInterceptor {
 
-    @Value("${provider.host}")
-    private String host;
+    private String host="";
+    private Class<T> feginInterface;
+    FeginProxyClass(){}
+    FeginProxyClass(Class<T> feginInterface){
+        this.feginInterface=feginInterface;
+    }
 
-    @Resource
-    private HttpClientUtils httpClientUtils;
+    private final HttpClientUtils httpClientUtils = HttpClientUtils.getInstance();
 
     @Override
-    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) {
         System.out.println("cglib");
         System.out.println("方法名称===" + method.getName());
-        for (Annotation annotation : o.getClass().getAnnotations()) {
-            System.out.println("类注解===" + annotation.toString());
+        CqFeginService annotation = feginInterface.getAnnotation(CqFeginService.class);
+        host = annotation.value();
+        if (StringUtils.isBlank(host)) {
+            host = annotation.host();
+        }
+        if (StringUtils.isBlank(host)) {
+            throw new RuntimeException("host 不能为空");
         }
         //发送 POST请求
         if (method.isAnnotationPresent(PostMapping.class)) {

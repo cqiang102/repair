@@ -5,7 +5,7 @@ import tk.mybatis.mapper.common.MySqlMapper;
 
 /**
  * @author 你是电脑
- * @create 2019/10/28 - 23:48
+ * @date 2019/10/28 - 23:48
  */
 public interface MyMapper<T> extends Mapper<T>, MySqlMapper<T> {
 }

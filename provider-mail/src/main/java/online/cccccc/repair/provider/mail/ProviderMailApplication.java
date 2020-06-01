@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author 你是电脑
- * @create 2019/11/1 - 17:14
+ * @date 2019/11/1 - 17:14
  */
 @SpringBootApplication(scanBasePackages = "online.cccccc.repair")
 @EnableAsync

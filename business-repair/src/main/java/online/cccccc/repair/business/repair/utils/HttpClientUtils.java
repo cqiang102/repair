@@ -11,10 +11,22 @@ import java.io.IOException;
 
 /**
  * @author 你是电脑
- * @create 2019/11/1 - 20:41
+ * @date 2019/11/1 - 20:41
  */
-@Component
 public class HttpClientUtils {
+    private HttpClientUtils(){}
+    private static  HttpClientUtils INSTANCE;
+    public static final byte[] LOCK= new byte[0];
+    public static HttpClientUtils getInstance(){
+        if (INSTANCE == null) {
+            synchronized (LOCK){
+                if (INSTANCE == null) {
+                    INSTANCE = new HttpClientUtils();
+                }
+            }
+        }
+        return INSTANCE;
+    }
     public CloseableHttpResponse post(String url, String body) throws IOException {
         // 创建 HttpClient 客户端
         CloseableHttpClient httpClient = HttpClients.createDefault();

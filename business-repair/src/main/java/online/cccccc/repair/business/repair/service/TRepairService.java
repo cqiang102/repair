@@ -11,28 +11,28 @@ import java.util.List;
 public interface TRepairService{
     /**
      * 添加数据
-     * @param repair
+     * @param repair {@link TRepair}
      * @return 返回单号
      */
     int insert(TRepair repair);
 
     /**
      * 根据 ID / 单号 查订单详情
-     * @param id
-     * @return
+     * @param id ID / 单号
+     * @return {@link TRepair}
      */
     TRepair getRepairbyId(String id);
 
     /**
      * 查询所有报修单
-     * @return
+     * @return {@link TRepair}
      */
     List<TRepair> selectAll();
 
     /**
      * 根据主键根新
      * @param id 主键
-     * @return
+     * @return 受影响行数
      */
-    int updataById(String id);
+    int updateById(String id);
 }

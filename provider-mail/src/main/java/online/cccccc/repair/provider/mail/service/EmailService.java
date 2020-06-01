@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * @author 你是电脑
- * @create 2019/11/1 - 17:16
+ * @date 2019/11/1 - 17:16
  */
 @Service
 public class EmailService {
@@ -69,7 +69,7 @@ public class EmailService {
                     logger.info("给 {} 发送了邮件 ，订单 {} ---------->{}",emailDTO.getTMails().getMailName(),repair.getRepairId(),DateFormatUtils.format(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss"));
                     sendTemplateEmail("支付宝到账100万元", emailTemplate, emailDTO.getTMails().getMailMail());
                 }else {
-                    System.out.println("无效token");
+                    logger.info("无效token");
                 }
 
             } catch (Exception e) {
@@ -113,7 +113,7 @@ public class EmailService {
             helper.setSubject(subject);
             helper.setText(body, true);
             javaMailSender.send(message);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }

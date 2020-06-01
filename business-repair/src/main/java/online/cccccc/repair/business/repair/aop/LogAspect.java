@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 /**
  * @author 你是电脑
- * @create 2019/11/2 - 20:18
+ * @date 2019/11/2 - 20:18
  */
 @Aspect
 @Component
@@ -25,11 +25,16 @@ public class LogAspect {
     @Pointcut("execution(* online.cccccc.repair.business.repair.controller.*.*(..))")
     private void pointcut(){}
 
-    // 环绕通知
+    /**
+     * 环绕通知
+     * @param joinPoint 切入点 {@link ProceedingJoinPoint}
+     * @return 函数返回
+     * @throws Throwable
+     */
     @Around(pointcut)
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         // 获取logger
-        Class clazz = joinPoint.getTarget().getClass();
+        Class<?> clazz = joinPoint.getTarget().getClass();
         Logger logger;
         try {
             Field field = clazz.getDeclaredField("logger");
@@ -43,10 +48,10 @@ public class LogAspect {
         }
 
         // 获取方法名
-        String methodName = joinPoint.getSignature().getName();
+        String methodName = clazz.getName().concat(joinPoint.getSignature().getName());
 
         // 记录函数参数
-        logger.info("函数: {}, 参数: {}", methodName, Arrays.toString(joinPoint.getArgs()));
+        logger.info("方法: {}, 参数: {}", methodName, Arrays.toString(joinPoint.getArgs()));
 
         // 函数开始时间
         long start = System.currentTimeMillis();
@@ -56,7 +61,7 @@ public class LogAspect {
         try {
             obj = joinPoint.proceed();
         } catch (Exception e) {
-            logger.error("函数: {}, 发生异常: {}", methodName, e.getMessage());
+            logger.error("方法: {}, 发生异常: {}", methodName, e.getMessage());
             throw e;
         }
 
@@ -64,10 +69,10 @@ public class LogAspect {
         long end = System.currentTimeMillis();
 
         // 记录函数返回值
-        logger.info("函数: {}, 返回值: {}", methodName, obj);
+        logger.info("方法: {}, 返回值: {}", methodName, obj);
 
         // 记录函数耗时
-        logger.info("函数: {}, 耗时: {} ms", methodName, (end - start));
+        logger.info("方法: {}, 耗时: {} ms", methodName, (end - start));
 
         return obj;
     }
