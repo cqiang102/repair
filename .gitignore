@@ -27,6 +27,7 @@ hs_err_pid*
 /commons/target/
 /provider-mail/target/
 /logs/
+/business-repair/target/classes/mapper/
 /business-repair/business-repair.iml
 /commons/commons.iml
 /dependencies/dependencies.iml

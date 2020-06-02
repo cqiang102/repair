@@ -6,9 +6,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.107.140.147:3306/repair?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/repair?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
     username: root
-    password: dytdyt0.0
+    password: 123456
     hikari:
       minimum-idle: 5
       idle-timeout: 600000
@@ -20,9 +20,9 @@ spring:
       connection-test-query: SELECT 1
   redis:
     database: 0
-    host: 47.107.140.147
+    host: 127.0.0.1
     port: 6379
-    password: 2375622526
+    password: 123456
     timeout: 200
     jedis:
       pool:
